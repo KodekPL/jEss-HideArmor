@@ -17,6 +17,10 @@ public class PacketListener implements Listener {
             return;
         }
 
+        if (event.getPlayer().getWorld().getPVP()) {
+            return;
+        }
+
         final Integer slot = getItemSlot(event);
 
         if (slot == null || slot == 0) { // Is null or item in hand
