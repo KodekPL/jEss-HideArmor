@@ -33,6 +33,7 @@ public class HideArmorPlugin extends JavaPlugin {
     public static boolean isSkippedArmorItem(Material material) {
         switch (material) {
         case SKULL_ITEM:
+        case BANNER:
             return true;
         default:
             return false;
