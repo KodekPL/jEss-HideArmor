@@ -2,12 +2,11 @@ package jcraft.hidearmor;
 
 import jcraft.pl.PacketType;
 import jcraft.pl.event.PacketPlayOutEvent;
-import net.minecraft.server.v1_8_R1.ItemStack;
 
-import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_8_R1.inventory.CraftItemStack;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.ItemStack;
 
 public class PacketListener implements Listener {
 
@@ -33,9 +32,9 @@ public class PacketListener implements Listener {
             return;
         }
 
-        final Material material = CraftItemStack.asBukkitCopy((ItemStack) item).getType();
+        final ItemStack itemStack = CraftItemStack.asBukkitCopy((net.minecraft.server.v1_8_R1.ItemStack) item);
 
-        if (HideArmorPlugin.isSkippedArmorItem(material)) {
+        if (HideArmorPlugin.isVisibleArmorItem(itemStack)) {
             return;
         }
 

@@ -4,9 +4,10 @@ import jcraft.pl.PacketListenerPlugin;
 import jcraft.pl.PacketType;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class HideArmorPlugin extends JavaPlugin {
@@ -30,11 +31,23 @@ public class HideArmorPlugin extends JavaPlugin {
         return false;
     }
 
-    public static boolean isSkippedArmorItem(Material material) {
-        switch (material) {
+    public static boolean isVisibleArmorItem(ItemStack item) {
+        switch (item.getType()) {
         case SKULL_ITEM:
         case BANNER:
             return true;
+        case LEATHER_HELMET:
+        case LEATHER_CHESTPLATE:
+        case LEATHER_LEGGINGS:
+        case LEATHER_BOOTS:
+            if (item.hasItemMeta()) {
+                LeatherArmorMeta meta = (LeatherArmorMeta) item.getItemMeta();
+
+                if (meta.getColor() != null && meta.getColor() != Bukkit.getItemFactory().getDefaultLeatherColor()) {
+                    return true;
+                }
+            }
+            return false;
         default:
             return false;
         }
