@@ -1,0 +1,5 @@
+name: jEss-HideArmor
+version: 1.0
+author: Kodek
+main: jcraft.hidearmor.HideArmorPlugin
+depends: [jPacketListener]
